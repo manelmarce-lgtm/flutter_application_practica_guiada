@@ -1,8 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:movies_app/models/movie.dart';
-import 'package:movies_app/models/now_playing_response.dart';
+import 'package:movies_app/models/models.dart';
 import 'package:movies_app/models/popular_response.dart';
 
 class MoviesProvider extends ChangeNotifier {
@@ -14,6 +13,9 @@ class MoviesProvider extends ChangeNotifier {
   List<Movie> onDisplayMovies = [];
 
   List<Movie> popularMovies = [];
+
+  Map<int,List<Cast>> casting = {};
+
 
   MoviesProvider() {
     getOnDisplayMovies();
@@ -47,4 +49,17 @@ class MoviesProvider extends ChangeNotifier {
     notifyListeners();
   
 }
+  Future <List<Cast>> getMovieCast(int movieId) async {
+    var url = Uri.https(_baseUrl, '3/movie/$movieId/credits', {
+      'api_key': _apiKey,
+      'language': _language,
+    });
+
+    final result = await http.get(url);
+    final creditResponse = CreditResponse.fromJson(result.body);
+
+    casting[movieId] = creditResponse.cast;
+
+    return creditResponse.cast;
+  }
 }
