@@ -50,17 +50,16 @@ class Movie {
 
   // Getter seguro para las imágenes del cartel
   String get fullPosterPath {
-  if (posterPath != null && posterPath!.isNotEmpty) {
-    return 'https://image.tmdb.org/w500$posterPath';
-  }
-  return 'https://via.placeholder.com/300x400';
-}
-
-  
-  String get fullBackdropPath {
-    if (backdropPath != null) {
-      return 'https://image.tmdb.org/w500$backdropPath';
+    if (posterPath != null && posterPath!.isNotEmpty) {
+      return 'https://image.tmdb.org/t/p/w500$posterPath';
     }
-    return 'https://via.placeholder.com/500x300';
+    return 'https://i.stack.imgur.com/GNhxO.png';
+  }
+
+  String get fullBackdropPath {
+    if (backdropPath != null && backdropPath!.isNotEmpty) {
+      return 'https://image.tmdb.org/t/p/w500$backdropPath';
+    }
+    return 'https://i.stack.imgur.com/GNhxO.png';
   }
 }

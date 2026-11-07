@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final moviesProvider = Provider.of<MoviesProvider>(context);
@@ -18,19 +20,15 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
-        child: Container(
-          child: Column(
-            children: [
-              // Targetes principals
-              CardSwiper(movies:moviesProvider.onDisplayMovies),
-
-              // Slider de pel·licules
-              MovieSlider(),
-              // Poodeu fer la prova d'afegir-ne uns quants, veureu com cada llista és independent
-              // MovieSlider(),
-              // MovieSlider(),
-            ],
-          ),
+        child: Column(
+          children: [
+            // Targetes principals
+            CardSwiper(movies:moviesProvider.onDisplayMovies),
+        
+            // Slider de pel·licules
+            MovieSlider(movies: moviesProvider.popularMovies, title: 'Populars'),
+           
+          ],
         ),
       ),
     );
