@@ -5,7 +5,7 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: Canviar després per una instància de Peli
-    final String peli =
+    final String peli = ModalRoute.of(context)?.settings.arguments.toString() ?? 'no-movie';
         ModalRoute.of(context)?.settings.arguments.toString() ?? 'no-movie';
 
     return Scaffold(
